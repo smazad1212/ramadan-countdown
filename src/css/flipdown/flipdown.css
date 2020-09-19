@@ -1,0 +1,136 @@
+@font-face {
+  font-family: 'Montserrat-ExtraBold';
+  src: url('../../../assets/fonts/Montserrat-ExtraBold.otf');
+  font-style: normal;
+  font-weight: normal;
+}
+
+.flipdown {
+  font-family: 'Montserrat-ExtraBold', sans-serif;
+}
+
+/* Rotor tops */
+.flipdown .rotor,
+.flipdown .rotor-top,
+.flipdown .rotor-leaf-front {
+  color: #fdf8ec;
+  background-color: #efb342;
+}
+/* Rotor bottoms */
+.flipdown .rotor-bottom,
+.flipdown .rotor-leaf-rear {
+  color: #fffaf0;
+  background-color: #fbcf64;
+}
+
+.flipdown {
+  overflow: visible;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+}
+
+.flipdown .rotor-group {
+  position: relative;
+  float: left;
+  padding-right: 8px;
+}
+
+.flipdown .rotor-group:last-child {
+  padding-right: 0;
+}
+
+.flipdown .rotor {
+  position: relative;
+  float: left;
+  width: 36px;
+  height: 50px;
+  margin: 0 5px 0 0;
+  border-radius: 4px;
+  font-size: 48px;
+  text-align: center;
+  perspective: 200px;
+}
+
+.flipdown .rotor:last-child {
+  margin-right: 0;
+}
+
+.flipdown .rotor-top,
+.flipdown .rotor-bottom {
+  overflow: hidden;
+  position: absolute;
+  width: 36px;
+  height: 25px;
+}
+
+.flipdown .rotor-leaf {
+  z-index: 1;
+  position: absolute;
+  width: 36px;
+  height: 50px;
+  transform-style: preserve-3d;
+  transition: transform 0s;
+}
+
+.flipdown .rotor-leaf.flipped {
+  transform: rotateX(-180deg);
+  transition: all 0.5s ease-in-out;
+}
+
+.flipdown .rotor-leaf-front,
+.flipdown .rotor-leaf-rear {
+  overflow: hidden;
+  position: absolute;
+  width: 36px;
+  height: 25px;
+  margin: 0;
+  transform: rotateX(0deg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flipdown .rotor-leaf-front {
+  line-height: 50px;
+  border-radius: 4px 4px 0 0;
+}
+
+.flipdown .rotor-leaf-rear {
+  line-height: 0;
+  border-radius: 0 0 4px 4px;
+  transform: rotateX(-180deg);
+}
+
+.flipdown .rotor-top {
+  line-height: 50px;
+  border-radius: 4px 4px 0 0;
+}
+
+.flipdown .rotor-bottom {
+  bottom: 0;
+  line-height: 0;
+  border-radius: 0 0 4px 4px;
+}
+
+.flipdown .rotor:after {
+  content: '';
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 36px;
+  height: 25px;
+  border-radius: 0 0 4px 4px;
+}
+
+/*hide headings*/
+.rotor-group-heading {
+  display: none;
+}
+
+/*hide days*/
+.flipdown .rotor-group:nth-child(1) {
+  display: none;
+}

@@ -1,0 +1,142 @@
+@font-face {
+  font-family: 'Bitopi Bijoy';
+  src: url('../../assets/fonts/Bitopi Bijoy.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'KongshoMJ';
+  src: url('../../assets/fonts/KongshoMJ Regular.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: #121212;
+}
+
+.loading, .hide {
+  opacity: 0 !important;
+}
+
+.animate {
+  transition: all .2s ease-in-out;
+}
+.night {
+  filter: invert(1);
+}
+
+.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+#banner {
+  position: relative;
+  height: 250px;
+  width: 300px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.header-container {
+  margin-top: 10px;
+  position: relative;
+}
+
+.header-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 29px;
+  z-index: -1;
+}
+
+.title {
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  line-height: 32px;
+  position: relative;
+}
+#iftarTxt {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.timer-container {
+  position: relative;
+  margin-top: 10px;
+}
+
+#flipdownIftar {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.message-container {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.product-container {
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  width: 100%;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-container:hover {
+  animation: float 6s ease-in-out infinite;
+}
+
+.logo {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  height: 58px;
+  width: 58px;
+}
+
+.logo img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+@keyframes float {
+  from {
+    transform: translate(0, 0px);
+  }
+  65% {
+    transform: translate(0, -8px);
+  }
+  to {
+    transform: translate(0, -0px);
+  }
+}
