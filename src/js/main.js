@@ -18,7 +18,7 @@ function convertTimeToSec(str) {
 }
 
 function fetchTimings() {
-  return fetch('http://api.aladhan.com/v1/calendarByCity?city=Dhaka&country=Bangladesh&method=1&month=05&year=2020&tune=1')
+  return fetch('https://api.aladhan.com/v1/calendarByCity?city=Dhaka&country=Bangladesh&method=1&month=05&year=2020&tune=1')
     .then(response => response.json())
     .then(res => {
       return res.data;
