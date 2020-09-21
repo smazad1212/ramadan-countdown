@@ -1,12 +1,12 @@
 let ramadanTimings = [];
 let day = 0;
 
-let [unixTime, currentTime, startOfDay] = [0, 0, 0];
+let [unixTime, currentTime, startOfDayUnix] = [0, 0, 0];
 
 function updateTime() {
   unixTime = new Date().getTime() / 1000;
-  currentTime = convertTimeToSec(new Date().toString().split(' ')[4]);
-  startOfDay = unixTime - currentTime;
+  currentTime = convertTimeToSec(new Date().toString().split(' ')[4]); // current Time in seconds
+  startOfDayUnix = unixTime - currentTime; // unix time 12:00 am today
 }
 
 function convertTimeToSec(str) {
@@ -32,10 +32,25 @@ function startTimer(callback) {
   updateTime();
   let sehriTime = convertTimeToSec(ramadanTimings[day].timings['Imsak']);
   let iftarTime = convertTimeToSec(ramadanTimings[day].timings['Sunset']);
-  let toSehri = startOfDay + sehriTime;
-  let toIftar = startOfDay + iftarTime;
+  let toSehri = startOfDayUnix + sehriTime;
+  let toIftar = startOfDayUnix + iftarTime;
   let passedSehri = (sehriTime - currentTime) < 0;
   let passedIftar = (iftarTime - currentTime) < 0;
+
+  if (passedSehri && passedIftar) {
+    day += 1;
+    if (day < ramadanTimings.length) {
+      sehriTime = convertTimeToSec(ramadanTimings[day].timings['Imsak']);
+      iftarTime = convertTimeToSec(ramadanTimings[day].timings['Sunset']);
+      toSehri = unixTime + (24*60*60 - currentTime) + sehriTime;
+      toIftar = unixTime + (24*60*60 - currentTime) + iftarTime;
+      passedSehri = false;
+      passedIftar = false;
+      document.getElementById('iftarTxt').classList.add('hide');
+      document.getElementById('flipdownIftar').classList.add('hide');
+      document.querySelector('.overlay img').classList.add('night');
+    }
+  }
 
   if (passedSehri && !passedIftar) {
     document.getElementById('sehriTxt').classList.add('hide');
@@ -53,7 +68,6 @@ function startTimer(callback) {
   let flipdownIftar = new FlipDown(toIftar, 'flipdownIftar')
     .start()
     .ifEnded(() => {
-      day += 1;
       document.querySelector('.overlay img').classList.add('night');
       if (day < ramadanTimings.length) {
         document.getElementById('flipdownIftar').innerHTML = '';
@@ -84,7 +98,6 @@ function onLoadingComplete() {
     opacity: [0,1],
     easing: 'easeInOutCubic'
   });
-  console.log(Math.floor(currentTime/60/60))
 }
 
 async function getDataAndStartTimer() {
